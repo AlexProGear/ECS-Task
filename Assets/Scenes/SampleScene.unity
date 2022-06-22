@@ -367,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4124285024749992849, guid: 9c14846f9729fc64b8e8c05102dbc8b7, type: 3}
       propertyPath: moveOffset.x
-      value: -5
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: -4124285024749992849, guid: 9c14846f9729fc64b8e8c05102dbc8b7, type: 3}
       propertyPath: <id>k__BackingField
@@ -379,7 +379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2786779342895890622, guid: 9c14846f9729fc64b8e8c05102dbc8b7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.77
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 2786779342895890622, guid: 9c14846f9729fc64b8e8c05102dbc8b7, type: 3}
       propertyPath: m_LocalPosition.y
