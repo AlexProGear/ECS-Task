@@ -1,3 +1,4 @@
+using System;
 using EcsTask.Systems;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace EcsTask.Unity
         public float deltaTime;
     }
 
-    public class EcsBootstrap : MonoBehaviour
+    public class EcsBootstrap : IInitializable, ITickable, IDisposable
     {
         [Inject] private EcsWorld _ecsWorld;
         [Inject] private SharedData _sharedData;
@@ -22,7 +23,7 @@ namespace EcsTask.Unity
 
         private EcsSystems _systems;
 
-        void Start()
+        public void Initialize()
         {
             _systems = new EcsSystems(_ecsWorld, _sharedData);
             _systems
@@ -33,13 +34,13 @@ namespace EcsTask.Unity
                 .Init();
         }
 
-        void Update()
+        public void Tick()
         {
             _systems.GetShared<SharedData>().deltaTime = Time.deltaTime;
             _systems.Run();
         }
 
-        private void OnDestroy()
+        public void Dispose()
         {
             _systems.Destroy();
         }

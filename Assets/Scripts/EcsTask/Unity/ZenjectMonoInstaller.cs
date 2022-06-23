@@ -8,6 +8,7 @@ namespace EcsTask.Unity
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<EcsBootstrap>().FromNew().AsSingle();
             Container.Bind<EcsWorld>().FromNew().AsSingle();
             Container.Bind<SharedData>().FromNew().AsSingle();
             Container.Bind<PlayerInitSystem>().FromNew().AsSingle();
