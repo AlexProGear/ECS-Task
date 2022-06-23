@@ -1,21 +1,37 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
+﻿using EcsTask.Components;
+using Leopotam.EcsLite;
+using UnityEngine;
+using Zenject;
 
 namespace EcsTask.Unity
 {
     public class PlayerView : MonoBehaviour
     {
-        public Vector3 Position => transform.position;
-        private NavMeshAgent navMeshAgent;
+        [Inject] private EcsWorld _ecsWorld;
 
-        private void Awake()
+        private void Update()
         {
-            navMeshAgent = GetComponent<NavMeshAgent>();
+            UpdatePosition();
         }
 
-        public void SetDestination(Vector3 destination)
+        private void UpdatePosition()
         {
-            navMeshAgent.destination = destination;
+            var playerFilter = _ecsWorld.Filter<PlayerComponent>().Inc<TransformComponent>().End();
+            var transformPool = _ecsWorld.GetPool<TransformComponent>();
+
+            foreach (var playerEntity in playerFilter)
+            {
+                ref var playerTransform = ref transformPool.Get(playerEntity);
+                if (!playerTransform.isSetFromScene)
+                {
+                    playerTransform.position = transform.position;
+                    playerTransform.isSetFromScene = true;
+                }
+                else
+                {
+                    transform.position = playerTransform.position;
+                }
+            }
         }
     }
 }
