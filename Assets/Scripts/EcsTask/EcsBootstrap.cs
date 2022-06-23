@@ -4,7 +4,7 @@ using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;
 
-namespace EcsTask.Unity
+namespace EcsTask
 {
     public class SharedData
     {
