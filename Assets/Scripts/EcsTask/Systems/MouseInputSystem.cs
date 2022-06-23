@@ -6,10 +6,13 @@ namespace EcsTask.Systems
 {
     public class MouseInputSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private Camera _camera;
+
         public void Init(EcsSystems systems)
         {
             var inputEntity = systems.GetWorld().NewEntity();
             systems.GetWorld().GetPool<MouseInputComponent>().Add(inputEntity);
+            _camera = Camera.main;
         }
 
         public void Run(EcsSystems systems)
@@ -21,7 +24,7 @@ namespace EcsTask.Systems
 
             if (Input.GetMouseButton(0))
             {
-                Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Ray mouseRay = _camera.ScreenPointToRay(Input.mousePosition);
                 Physics.Raycast(mouseRay, out RaycastHit hitInfo);
                 Vector3 hitPoint = hitInfo.point;
 

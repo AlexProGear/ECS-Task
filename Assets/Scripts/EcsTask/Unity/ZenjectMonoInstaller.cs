@@ -13,7 +13,6 @@ namespace EcsTask.Unity
 
             Container.Bind<EcsWorld>().FromNew().AsSingle();
             Container.Bind<SharedData>().FromNew().AsSingle();
-            Container.Bind<UnityPlayerSystem>().FromNew().AsSingle();
             Container.Bind<MouseInputSystem>().FromNew().AsSingle();
             Container.Bind<PlayerMovementSystem>().FromNew().AsSingle();
             Container.Bind<ButtonDoorLogicSystem>().FromNew().AsSingle();

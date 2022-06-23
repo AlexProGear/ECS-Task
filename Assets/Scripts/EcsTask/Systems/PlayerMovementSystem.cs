@@ -25,7 +25,7 @@ namespace EcsTask.Systems
                     if (!mouseInputComponent.isSet)
                         continue;
                     Vector3 endPosition = mouseInputComponent.position;
-                    playerComponent.targetPosition = endPosition;
+                    playerComponent.view.SetDestination(endPosition);
                 }
             }
         }
