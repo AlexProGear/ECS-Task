@@ -17,7 +17,7 @@ namespace EcsTask.Unity
         [Inject] private MouseInputSystem _mouseInputSystem;
         [Inject] private UnityPlayerSystem _unityPlayerSystem;
         [Inject] private PlayerMovementSystem _playerMovementSystem;
-        [Inject] private ButtonLogicSystem _buttonLogicSystem;
+        [Inject] private ButtonDoorLogicSystem _buttonDoorLogicSystem;
 
         private EcsSystems _systems;
 
@@ -28,7 +28,7 @@ namespace EcsTask.Unity
                 .Add(_mouseInputSystem)
                 .Add(_unityPlayerSystem)
                 .Add(_playerMovementSystem)
-                .Add(_buttonLogicSystem)
+                .Add(_buttonDoorLogicSystem)
                 .Init();
         }
 

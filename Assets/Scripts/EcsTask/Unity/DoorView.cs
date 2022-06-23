@@ -1,5 +1,8 @@
 ﻿using DG.Tweening;
+using EcsTask.Components;
+using Leopotam.EcsLite;
 using UnityEngine;
+using Zenject;
 
 namespace EcsTask.Unity
 {
@@ -8,6 +11,8 @@ namespace EcsTask.Unity
         [SerializeField] private Vector3 moveOffset;
         [SerializeField] private float moveTime;
         [field: SerializeField] public string id { get; private set; }
+
+        [Inject] private EcsWorld _ecsWorld;
 
         private Tween _doorTween;
 
@@ -19,6 +24,10 @@ namespace EcsTask.Unity
                 .SetLoops(-1, LoopType.Yoyo);
 
             _doorTween.Pause();
+
+            var entity = _ecsWorld.NewEntity();
+            ref var doorComponent = ref _ecsWorld.GetPool<DoorComponent>().Add(entity);
+            doorComponent.view = this;
         }
 
         private void OnDestroy()

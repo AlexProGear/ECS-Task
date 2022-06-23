@@ -11,20 +11,27 @@ namespace EcsTask.Unity
 
         [Inject] private EcsWorld _ecsWorld;
 
+        private const string PLAYER_TAG = "Player";
+
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Player"))
-                return;
-
-            UpdateButtonState(true);
+            if (ContainsPlayerTag(other))
+            {
+                UpdateButtonState(true);
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (!other.CompareTag("Player"))
-                return;
+            if (ContainsPlayerTag(other))
+            {
+                UpdateButtonState(false);
+            }
+        }
 
-            UpdateButtonState(false);
+        private static bool ContainsPlayerTag(Component component)
+        {
+            return component.CompareTag(PLAYER_TAG);
         }
 
         private void UpdateButtonState(bool pressed)
